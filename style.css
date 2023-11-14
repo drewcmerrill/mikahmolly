@@ -1,0 +1,46 @@
+/* Reset some default styles */
+body,
+h1,
+h2,
+h3,
+p,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: -webkit-fill-available;
+}
+
+body {
+}
+
+.header {
+  display: flex;
+  background-color: black;
+  width: 100vw;
+  height: 100px;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-link {
+  color: white;
+  text-decoration: none;
+  font-size: 40;
+}
+
+.stud-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.studs {
+  width: 80vw;
+  max-width: 400px;
+  height: auto;
+}
