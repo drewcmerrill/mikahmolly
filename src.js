@@ -41,9 +41,35 @@ function drawStreaks() {
   canvas.width = canvas.clientWidth * dpr;
   canvas.height = canvas.clientHeight * dpr;
 
-  let zigs = 4;
-  ctx.fillStyle = "#a5180e";
+  let zigs = 3;
+
+  ctx.fillStyle = "#1a1eba";
   let streakWidth = 200;
+  let streakHeight =
+    streakWidth *
+    Math.tan(Math.PI / 2 - Math.atan((canvas.width * zigs) / canvas.height));
+
+  console.log(streakHeight);
+
+  for (let i = 0; i < zigs; i++) {
+    let streak = [];
+    if (i % 2 === 0) {
+      streak[0] = { x: 0, y: (i / zigs) * canvas.height };
+      streak[1] = { x: 0, y: (i / zigs) * canvas.height + streakHeight };
+      streak[2] = {
+        x: canvas.width - streakWidth,
+        y: ((i + 1) / zigs) * canvas.height + streakHeight,
+      };
+      streak[3] = {
+        x: canvas.width - streakWidth,
+        y: ((i + 1) / zigs) * canvas.height,
+      };
+    } else {
+    }
+    drawFilledPolygon(ctx, streak);
+  }
+
+  ctx.fillStyle = "#a5180e";
 
   let vertices = [];
   for (let i = 0; i <= zigs; i++) {
