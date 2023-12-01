@@ -1,5 +1,6 @@
 function onScroll() {
   let stripeContainer = document.querySelector(".stripe-container");
+  let studContainer = document.querySelector(".stud-container");
   var scrollPosition = window.scrollY || document.documentElement.scrollTop;
 
   // Calculate a value between 0 and 1 based on the scroll position
@@ -7,9 +8,10 @@ function onScroll() {
     scrollPosition / (document.body.scrollHeight - window.innerHeight),
     1
   );
-
   // Gradually change the background color based on scroll position
-  stripeContainer.style.height = `${scrollPercentage * 100}%`;
+  stripeContainer.style.height = `${
+    scrollPercentage * studContainer.clientHeight + 400
+  }px`;
 }
 
 function drawFilledPolygon(ctx, vertices) {
@@ -35,6 +37,10 @@ function drawFilledPolygon(ctx, vertices) {
 
 function drawStreaks() {
   let canvas = document.querySelector(".zigzag");
+  let studContainer = document.querySelector(".stud-container");
+  let stripeContainer = document.querySelector(".stripe-container");
+  stripeContainer.style.height = "400px";
+  canvas.style.height = studContainer.clientHeight;
   let ctx = canvas.getContext("2d");
   let dpr = window.devicePixelRatio || 1;
 
@@ -42,9 +48,10 @@ function drawStreaks() {
   canvas.height = canvas.clientHeight * dpr;
 
   let zigs = 3;
+  let buffer = 5;
 
   ctx.fillStyle = "#1a1eba";
-  let streakWidth = 200;
+  let streakWidth = 75;
   let streakHeight =
     streakWidth *
     Math.tan(Math.PI / 2 - Math.atan((canvas.width * zigs) / canvas.height));
@@ -54,17 +61,42 @@ function drawStreaks() {
   for (let i = 0; i < zigs; i++) {
     let streak = [];
     if (i % 2 === 0) {
-      streak[0] = { x: 0, y: (i / zigs) * canvas.height };
-      streak[1] = { x: 0, y: (i / zigs) * canvas.height + streakHeight };
+      if (i === 0) {
+        streak[0] = {
+          x: streakWidth * 0.9,
+          y: (i / zigs) * canvas.height,
+        };
+        streak[1] = { x: 0, y: (i / zigs) * canvas.height };
+      } else {
+        streak[0] = { x: 0 + buffer, y: (i / zigs) * canvas.height };
+        streak[1] = {
+          x: 0 + buffer,
+          y: (i / zigs) * canvas.height + streakHeight,
+        };
+      }
+
       streak[2] = {
-        x: canvas.width - streakWidth,
+        x: canvas.width - streakWidth - buffer,
         y: ((i + 1) / zigs) * canvas.height + streakHeight,
       };
       streak[3] = {
-        x: canvas.width - streakWidth,
+        x: canvas.width - streakWidth - buffer,
         y: ((i + 1) / zigs) * canvas.height,
       };
     } else {
+      streak[0] = { x: canvas.width - buffer, y: (i / zigs) * canvas.height };
+      streak[1] = {
+        x: canvas.width - buffer,
+        y: (i / zigs) * canvas.height + streakHeight,
+      };
+      streak[2] = {
+        x: streakWidth + buffer,
+        y: ((i + 1) / zigs) * canvas.height + streakHeight,
+      };
+      streak[3] = {
+        x: streakWidth + buffer,
+        y: ((i + 1) / zigs) * canvas.height,
+      };
     }
     drawFilledPolygon(ctx, streak);
   }
@@ -74,18 +106,29 @@ function drawStreaks() {
   let vertices = [];
   for (let i = 0; i <= zigs; i++) {
     if (i % 2 === 0) {
-      vertices[i] = { x: 0, y: (i / zigs) * canvas.height };
-      vertices[zigs * 2 + 1 - i] = {
-        x: streakWidth,
-        y: (i / zigs) * canvas.height,
-      };
+      if (i === 0) {
+        vertices[i] = {
+          x: streakWidth * 0.9,
+          y: (i / zigs) * canvas.height,
+        };
+        vertices[zigs * 2 + 1 - i] = {
+          x: streakWidth * 2 * 0.9,
+          y: (i / zigs) * canvas.height,
+        };
+      } else {
+        vertices[i] = { x: 0 + buffer, y: (i / zigs) * canvas.height };
+        vertices[zigs * 2 + 1 - i] = {
+          x: streakWidth + buffer,
+          y: (i / zigs) * canvas.height,
+        };
+      }
     } else {
       vertices[i] = {
-        x: canvas.width - streakWidth,
+        x: canvas.width - streakWidth - buffer,
         y: (i / zigs) * canvas.height,
       };
       vertices[zigs * 2 + 1 - i] = {
-        x: canvas.width,
+        x: canvas.width - buffer,
         y: (i / zigs) * canvas.height,
       };
     }
