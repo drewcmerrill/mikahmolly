@@ -138,7 +138,7 @@ function drawStreaks() {
   drawFilledPolygon(ctx, vertices);
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+window.addEventListener("load", function () {
   // Attach the onScroll function to the scroll event
   window.addEventListener("scroll", onScroll);
 
