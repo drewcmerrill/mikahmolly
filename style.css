@@ -41,11 +41,11 @@ body {
 .stripe-container {
   position: absolute;
   display: flex;
-  /* overflow: hidden; */
+  overflow: hidden;
   justify-content: center;
   height: 0%;
   width: 100%;
-  transition: height 1s ease;
+  transition: height 0.5s ease;
 }
 
 .zigzag {
