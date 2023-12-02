@@ -47,7 +47,7 @@ function drawStreaks() {
   canvas.width = canvas.clientWidth * dpr;
   canvas.height = canvas.clientHeight * dpr;
 
-  let zigs = 3;
+  let zigs = 5;
   let buffer = 5;
 
   ctx.fillStyle = "#1a1eba";
