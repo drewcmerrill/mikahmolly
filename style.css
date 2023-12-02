@@ -41,7 +41,7 @@ body {
 .stripe-container {
   position: absolute;
   display: flex;
-  overflow: hidden;
+  /* overflow: hidden; */
   justify-content: center;
   height: 0%;
   width: 100%;
