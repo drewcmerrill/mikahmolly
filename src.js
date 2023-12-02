@@ -10,7 +10,7 @@ function onScroll() {
   );
   // Gradually change the background color based on scroll position
   stripeContainer.style.height = `${
-    scrollPercentage * studContainer.clientHeight + 400
+    scrollPercentage * studContainer.clientHeight
   }px`;
 }
 

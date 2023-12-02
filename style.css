@@ -43,7 +43,7 @@ body {
   display: flex;
   overflow: hidden;
   justify-content: center;
-  height: 15%;
+  height: 0%;
   width: 100%;
   transition: height 1s ease;
 }
