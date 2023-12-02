@@ -43,6 +43,7 @@ body {
   display: flex;
   overflow: hidden;
   justify-content: center;
+  /* background-color: blueviolet; */
   height: 0%;
   width: 100%;
   transition: height 0.5s ease;
