@@ -47,11 +47,11 @@ function drawStreaks() {
   canvas.width = canvas.clientWidth * dpr;
   canvas.height = canvas.clientHeight * dpr;
 
-  let zigs = 5;
+  let zigs = 4;
   let buffer = 5;
 
   ctx.fillStyle = "#1a1eba";
-  let streakWidth = 75;
+  let streakWidth = 175;
   let streakHeight =
     streakWidth *
     Math.tan(Math.PI / 2 - Math.atan((canvas.width * zigs) / canvas.height));
