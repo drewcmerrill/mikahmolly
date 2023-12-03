@@ -39,7 +39,7 @@ function drawStreaks() {
   let canvas = document.querySelector(".zigzag");
   let studContainer = document.querySelector(".stud-container");
   let stripeContainer = document.querySelector(".stripe-container");
-  stripeContainer.style.height = "400px";
+  // stripeContainer.style.height = "400px";
   canvas.style.height = studContainer.clientHeight;
   let ctx = canvas.getContext("2d");
   let dpr = window.devicePixelRatio || 1;
