@@ -50,7 +50,7 @@ function drawStreaks() {
   let zigs = 4;
   let buffer = 5;
 
-  ctx.fillStyle = "#1a1eba";
+  ctx.fillStyle = "#80a1d4";
   let streakWidth = 175;
   let streakHeight =
     streakWidth *
@@ -101,7 +101,7 @@ function drawStreaks() {
     drawFilledPolygon(ctx, streak);
   }
 
-  ctx.fillStyle = "#a5180e";
+  ctx.fillStyle = "#c5283d";
 
   let vertices = [];
   for (let i = 0; i <= zigs; i++) {
@@ -140,7 +140,7 @@ function drawStreaks() {
 
 window.addEventListener("load", function () {
   // Attach the onScroll function to the scroll event
-  window.addEventListener("scroll", onScroll);
+  // window.addEventListener("scroll", onScroll);
 
   drawStreaks();
 });

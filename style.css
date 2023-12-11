@@ -30,17 +30,45 @@ body {
   /* position: absolute; */
   z-index: -1;
   display: flex;
-  background: linear-gradient(to bottom, black 60%, black);
+  /* background: linear-gradient(to bottom, #07090f 80%, #07090f); */
+  background-color: #252422; /*#373f51;*/
   width: 100%;
-  height: 300px;
-  justify-content: left;
+  height: 400px;
   align-items: center;
-  /* flex-direction: column; */
 }
 
-.header img {
-  animation: none;
-  animation-play-state: paused;
+.logo {
+  width: 600px;
+  height: auto;
+}
+
+.menu {
+  height: 90%;
+  width: 40%;
+  margin: 10px;
+  padding: 10px;
+  padding-right: 40px;
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  font-family: "Oswald", sans-serif;
+  color: white;
+  /* background-color: brown; */
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.names {
+  align-self: flex-end;
+  font-size: 100px;
+  font-style: italic;
+  transition: transform 0.3s ease;
+}
+
+.item {
+  align-self: flex-end;
+  font-size: 35px;
+  font-style: italic;
 }
 
 .stripe-container {
@@ -77,6 +105,11 @@ body {
   max-width: 550px;
   height: auto;
   align-self: center;
+  transition: transform 0.3s ease;
+}
+
+.studs:hover {
+  transform: scale(1.05);
 }
 
 .bios {
@@ -125,6 +158,19 @@ body {
 @media (max-width: 1024px) {
   .header {
     /* height: 100vh; */
+  }
+
+  .names {
+    align-self: flex-end;
+    font-size: 45px;
+    font-style: italic;
+    transition: transform 0.3s ease;
+  }
+
+  .item {
+    align-self: flex-end;
+    font-size: 30px;
+    font-style: italic;
   }
 
   .bios {
