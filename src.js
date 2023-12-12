@@ -44,19 +44,25 @@ function drawStreaks() {
   let ctx = canvas.getContext("2d");
   let dpr = window.devicePixelRatio || 1;
 
-  canvas.width = canvas.clientWidth * dpr;
-  canvas.height = canvas.clientHeight * dpr;
+  canvas.width = canvas.clientWidth;
+  canvas.height = canvas.clientHeight;
+
+  // if (dpr > 1) {
+  //   canvas.width = canvas.clientWidth * 1.2;
+  //   canvas.height = canvas.clientHeight * 1.2;
+  // }
+
+  let deviceWidth = window.innerWidth;
+  console.log(deviceWidth);
 
   let zigs = 4;
   let buffer = 5;
 
   ctx.fillStyle = "#80a1d4";
-  let streakWidth = 175;
+  let streakWidth = Math.min(175, (175 * deviceWidth) / 1920);
   let streakHeight =
     streakWidth *
     Math.tan(Math.PI / 2 - Math.atan((canvas.width * zigs) / canvas.height));
-
-  console.log(streakHeight);
 
   for (let i = 0; i < zigs; i++) {
     let streak = [];
@@ -140,7 +146,7 @@ function drawStreaks() {
 
 window.addEventListener("load", function () {
   // Attach the onScroll function to the scroll event
-  // window.addEventListener("scroll", onScroll);
+  window.addEventListener("scroll", onScroll);
 
   drawStreaks();
 });
