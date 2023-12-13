@@ -38,7 +38,6 @@ function drawFilledPolygon(ctx, vertices) {
 function drawStreaks() {
   let canvas = document.querySelector(".zigzag");
   let studContainer = document.querySelector(".stud-container");
-  let stripeContainer = document.querySelector(".stripe-container");
   // stripeContainer.style.height = "400px";
   canvas.style.height = studContainer.clientHeight;
   let ctx = canvas.getContext("2d");
@@ -55,7 +54,7 @@ function drawStreaks() {
   let deviceWidth = window.innerWidth;
   console.log(deviceWidth);
 
-  let zigs = 4;
+  let zigs = document.querySelectorAll(".content-row").length;
   let buffer = 5;
 
   ctx.fillStyle = "#80a1d4";
