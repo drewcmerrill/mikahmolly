@@ -17,7 +17,7 @@ html {
 }
 
 body {
-  /* background-color: aliceblue; */
+  /* background-color: #252422; */
 }
 
 .stud-container {
@@ -69,7 +69,7 @@ body {
 
 .flare {
   width: 100%;
-  height: 20px;
+  height: 25px;
   background: linear-gradient(
     to right,
     #80a1d4,
