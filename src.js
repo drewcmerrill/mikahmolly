@@ -59,7 +59,7 @@ function drawStreaks() {
   let buffer = 5;
 
   ctx.fillStyle = "#80a1d4";
-  let streakWidth = Math.min(175, (175 * deviceWidth) / 1920);
+  let streakWidth = Math.min(175, (175 * deviceWidth) / 1920 + 30);
   let streakHeight =
     streakWidth *
     Math.tan(Math.PI / 2 - Math.atan((canvas.width * zigs) / canvas.height));
