@@ -42,7 +42,7 @@ body {
 }
 
 .logo {
-  width: 300px;
+  width: 400px;
   height: auto;
   /* margin: 20px; */
   margin-bottom: 10px;
@@ -61,6 +61,8 @@ body {
   font-size: 40px;
   font-style: italic;
   text-decoration: none;
+
+  font-weight: 100;
 }
 
 .item:hover {
@@ -121,41 +123,77 @@ body {
   transform: scale(1.05);
 }
 
-.bios {
+.content-row {
   display: flex;
   width: 100%;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  margin-bottom: 20px;
   /* align-items: center; */
+}
+
+.content-column {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
 }
 
 .bio {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: "Oswald", sans-serif;
-  /* outline: auto; */
-  margin: 20px;
-  padding: 5px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  padding: 10px;
 }
 
-#mikah {
+.bottom {
   align-self: flex-end;
 }
 
-#molly {
+.top {
   align-self: flex-start;
   /* margin-top: 100px; */
+}
+
+.center {
+  align-self: center;
+}
+
+.youtube {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.embedded {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.embedded iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .name {
   font-size: 50px;
   font-weight: 900;
+  font-family: "Oswald", sans-serif;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .about {
   text-align: center;
   font-size: 25px;
+  font-family: "Oswald", sans-serif;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .merch {
@@ -173,7 +211,7 @@ body {
   background-color: black;
 }
 
-@media (min-width: 2400px) {
+@media (min-width: 2200px) {
   .flare {
     background: linear-gradient(
       to right,
@@ -186,8 +224,8 @@ body {
 }
 
 @media (max-width: 1024px) {
-  .header {
-    /* height: 100vh; */
+  .logo {
+    width: 200px;
   }
 
   .flare {
@@ -204,34 +242,43 @@ body {
     font-size: 50px;
   }
 
-  .names {
-    align-self: flex-end;
-    font-size: 45px;
-    font-style: italic;
-    transition: transform 0.3s ease;
-  }
-
   .item {
     font-size: 25px;
   }
 
-  .bios {
+  .content-row {
     flex-direction: column;
+  }
+
+  .edge {
+    order: 2;
   }
 
   .bio {
     background-color: rgba(0, 0, 0, 0.6);
     color: white;
     border-radius: 3px;
-    order: 2;
+  }
+
+  .youtube {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border-radius: 3px;
+  }
+
+  .name {
+    color: white;
+  }
+
+  .about {
+    color: white;
   }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 400px) {
   .item {
     margin-left: 10px;
     margin-right: 10px;
-    font-size: 25px;
   }
 
   .merch {
