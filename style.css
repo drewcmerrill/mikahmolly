@@ -94,11 +94,13 @@ body {
 }
 
 .zigzag {
+  position: absolute;
   z-index: -1;
-  width: 100%;
+  width: 98%;
+  height: 100%;
   max-width: 1500px;
-  /* height: 2000px; */
-  /* outline: auto; */
+  left: 50%;
+  transform: translate(-50%, 0%);
 }
 
 .bottom-gradient {
@@ -127,7 +129,8 @@ body {
   display: flex;
   width: 100%;
   justify-content: space-between;
-  margin-bottom: 20px;
+  position: relative;
+  /* min-height: 1000px; */
   /* align-items: center; */
 }
 
