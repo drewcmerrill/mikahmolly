@@ -70,15 +70,16 @@ body {
 }
 
 .flare {
+  position: absolute;
   width: 100%;
   height: 25px;
-  background: linear-gradient(
-    to right,
+  /* background: linear-gradient(
+    38deg,
     #80a1d4,
-    #80a1d4 35%,
-    #c5283d 35%,
+    #80a1d4 23.9%,
+    #c5283d 23.9%,
     #c5283d
-  );
+  ); */
   z-index: -1;
 }
 
