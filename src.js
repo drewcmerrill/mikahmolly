@@ -52,8 +52,8 @@ function drawZigs() {
   let offset = canvas.clientWidth / 4;
 
   flare.style.background = `linear-gradient(to right, #80a1d4, #80a1d4 ${
-    canvasStart + streakWidth
-  }px, #c5283d ${canvasStart + streakWidth}px, #c5283d )`;
+    canvasStart + offset
+  }px, #c5283d ${canvasStart + offset}px, #c5283d )`;
 
   //draw the blue streak first
   ctx.fillStyle = "#80a1d4";
