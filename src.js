@@ -163,9 +163,13 @@ function drawZigs() {
   redFlare.style.width = `${
     document.body.clientWidth - (canvasStart + offset + streakWidth / dpr)
   }px`;
+
+  blueFlare.style.left = `${canvasStart + offset + streakWidth / dpr}px`;
   blueFlare.style.width = `${canvasStart + offset + streakWidth / dpr}px`;
-  // blueFlare.style.transition = " width 1s ease, left 1s ease";
-  // blueFlare.style.left = "0px";
+  blueFlare.style.transition = "width 1s ease, left 1s ease";
+  requestAnimationFrame(() => {
+    blueFlare.style.left = "0";
+  });
 }
 
 window.addEventListener("load", function () {

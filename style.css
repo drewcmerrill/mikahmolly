@@ -79,9 +79,9 @@ body {
 .blue-flare {
   position: absolute;
   height: 100%;
-  width: 0px; /* Set the width of the left div */
+  width: 0px;
   background-color: #80a1d4;
-  /* transition: width 1s ease, left 1s ease; */
+  transition: width 1s ease;
 }
 
 .red-flare {
