@@ -34,15 +34,17 @@ function drawZigs() {
   //get all the content-rows
   let contentRows = document.querySelectorAll(".content-row");
 
-  //the width of the streaks
-  let streakWidth = interpolate(window.innerWidth, 125, 250, 450, 1720); //* (window.innerWidth / 1710);
-
   //do the first row first, because the top has a different offset than the others
   let canvas = contentRows[0].querySelector(".zigzag");
   let ctx = canvas.getContext("2d");
   let dpr = window.devicePixelRatio || 1;
   canvas.width = canvas.clientWidth * dpr;
   canvas.height = canvas.clientHeight * dpr;
+
+  //the width of the streaks
+  let streakWidth = interpolate(window.innerWidth, 50, 150, 450, 1920) * dpr;
+
+  console.log(dpr);
 
   //draw the flare element
   let blueFlare = contentRows[0].querySelector(".blue-flare");
@@ -51,12 +53,13 @@ function drawZigs() {
 
   //how far the streak starts offset to the left side of the canvas
   let offset = canvas.clientWidth / 4;
+  let offsetCanvas = offset * dpr;
 
   //draw the blue streak first
   ctx.fillStyle = "#80a1d4";
   let vertices = [];
-  vertices[0] = { x: 0 + offset, y: 0 };
-  vertices[1] = { x: streakWidth + offset, y: 0 };
+  vertices[0] = { x: 0 + offsetCanvas, y: 0 };
+  vertices[1] = { x: streakWidth + offsetCanvas, y: 0 };
   vertices[2] = { x: canvas.width - streakWidth, y: canvas.height };
   vertices[3] = { x: canvas.width - streakWidth * 2, y: canvas.height };
   drawFilledPolygon(ctx, vertices);
@@ -64,15 +67,16 @@ function drawZigs() {
   //draw the red streak
   ctx.fillStyle = "#c5283d";
   vertices = [];
-  vertices[0] = { x: streakWidth + offset, y: 0 };
-  vertices[1] = { x: streakWidth * 2 + offset, y: 0 };
+  vertices[0] = { x: streakWidth + offsetCanvas, y: 0 };
+  vertices[1] = { x: streakWidth * 2 + offsetCanvas, y: 0 };
   vertices[2] = { x: canvas.width, y: canvas.height };
   vertices[3] = { x: canvas.width - streakWidth, y: canvas.height };
   drawFilledPolygon(ctx, vertices);
 
   //calculate the height of the current streak for the use of the next streak
   let previousStreakHeight =
-    (canvas.height * streakWidth) / (canvas.width - 2 * streakWidth - offset);
+    (canvas.height * streakWidth) /
+    (canvas.width - 2 * streakWidth - offsetCanvas);
 
   //iterate through all the content-rows
   for (let i = 1; i < contentRows.length; i++) {
@@ -154,12 +158,14 @@ function drawZigs() {
     previousStreakHeight = currentStreakHeight;
   }
 
-  redFlare.style.left = `${canvasStart + offset}px`;
-  blueFlare.style.left = `${canvasStart + offset}px`;
-  // redFlare.style.width = `${window.innerWidth - canvasStart + offset}px`;
-  blueFlare.style.width = `${canvasStart + offset}px`;
-  blueFlare.style.transition = " width 1s ease, left 1s ease";
-  blueFlare.style.left = "0px";
+  redFlare.style.left = `${canvasStart + offset + streakWidth / dpr}px`;
+  // blueFlare.style.left = `${canvasStart + offset}px`;
+  redFlare.style.width = `${
+    document.body.clientWidth - (canvasStart + offset + streakWidth / dpr)
+  }px`;
+  blueFlare.style.width = `${canvasStart + offset + streakWidth / dpr}px`;
+  // blueFlare.style.transition = " width 1s ease, left 1s ease";
+  // blueFlare.style.left = "0px";
 }
 
 window.addEventListener("load", function () {
