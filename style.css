@@ -61,7 +61,6 @@ body {
   font-size: 40px;
   font-style: italic;
   text-decoration: none;
-
   font-weight: 100;
 }
 
@@ -69,29 +68,28 @@ body {
   text-decoration: underline;
 }
 
-.flare {
+.flare-container {
+  display: flex;
   position: absolute;
   width: 100%;
   height: 25px;
-  /* background: linear-gradient(
-    38deg,
-    #80a1d4,
-    #80a1d4 23.9%,
-    #c5283d 23.9%,
-    #c5283d
-  ); */
   z-index: -1;
 }
 
-.stripe-container {
+.blue-flare {
   position: absolute;
-  display: flex;
-  /* overflow: hidden; */
-  justify-content: center;
-  /* background-color: blueviolet; */
-  height: 0%;
-  width: 100%;
-  transition: height 1s ease;
+  height: 100%;
+  width: 0px; /* Set the width of the left div */
+  background-color: #80a1d4;
+  /* transition: width 1s ease, left 1s ease; */
+}
+
+.red-flare {
+  position: absolute;
+  height: 100%;
+  width: 0px;
+  background-color: #c5283d;
+  transition: width 1s ease;
 }
 
 .zigzag {
@@ -106,7 +104,6 @@ body {
 
 .bottom-gradient {
   position: absolute;
-
   width: 100%;
   height: 100px;
   bottom: 0%;

@@ -45,15 +45,12 @@ function drawZigs() {
   canvas.height = canvas.clientHeight * dpr;
 
   //draw the flare element
-  let flare = contentRows[0].querySelector(".flare");
+  let blueFlare = contentRows[0].querySelector(".blue-flare");
+  let redFlare = contentRows[0].querySelector(".red-flare");
   let canvasStart = canvas.getBoundingClientRect().left;
 
   //how far the streak starts offset to the left side of the canvas
   let offset = canvas.clientWidth / 4;
-
-  flare.style.background = `linear-gradient(to right, #80a1d4, #80a1d4 ${
-    canvasStart + offset
-  }px, #c5283d ${canvasStart + offset}px, #c5283d )`;
 
   //draw the blue streak first
   ctx.fillStyle = "#80a1d4";
@@ -156,6 +153,13 @@ function drawZigs() {
     //set the previousStreakHeight for the use of the next row
     previousStreakHeight = currentStreakHeight;
   }
+
+  redFlare.style.left = `${canvasStart + offset}px`;
+  blueFlare.style.left = `${canvasStart + offset}px`;
+  // redFlare.style.width = `${window.innerWidth - canvasStart + offset}px`;
+  blueFlare.style.width = `${canvasStart + offset}px`;
+  blueFlare.style.transition = " width 1s ease, left 1s ease";
+  blueFlare.style.left = "0px";
 }
 
 window.addEventListener("load", function () {
