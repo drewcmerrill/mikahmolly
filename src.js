@@ -46,11 +46,6 @@ function drawZigs() {
 
   console.log(dpr);
 
-  //draw the flare element
-  let blueFlare = contentRows[0].querySelector(".blue-flare");
-  let redFlare = contentRows[0].querySelector(".red-flare");
-  let canvasStart = canvas.getBoundingClientRect().left;
-
   //how far the streak starts offset to the left side of the canvas
   let offset = canvas.clientWidth / 4;
   let offsetCanvas = offset * dpr;
@@ -104,13 +99,27 @@ function drawZigs() {
       drawFilledPolygon(ctx, vertices);
 
       //draw the filling triangle for the blue streak
-      vertices = [];
-      vertices[0] = { x: streakWidth, y: 0 };
-      vertices[1] = { x: streakWidth * 2, y: 0 };
-      vertices[2] = {
-        x: streakWidth,
-        y: previousStreakHeight,
-      };
+      if (previousStreakHeight > currentStreakHeight) {
+        let trapezoidWidth =
+          ((previousStreakHeight - currentStreakHeight) * streakWidth) /
+          previousStreakHeight;
+        vertices = [];
+        vertices[0] = { x: streakWidth, y: 0 };
+        vertices[1] = { x: streakWidth * 2, y: 0 };
+        vertices[2] = {
+          x: streakWidth + trapezoidWidth,
+          y: currentStreakHeight,
+        };
+        vertices[3] = { x: streakWidth, y: currentStreakHeight };
+      } else {
+        vertices = [];
+        vertices[0] = { x: streakWidth, y: 0 };
+        vertices[1] = { x: streakWidth * 2, y: 0 };
+        vertices[2] = {
+          x: streakWidth,
+          y: previousStreakHeight,
+        };
+      }
 
       drawFilledPolygon(ctx, vertices);
 
@@ -134,13 +143,30 @@ function drawZigs() {
       drawFilledPolygon(ctx, vertices);
 
       //draw the filling triangle for the blue streak
-      vertices = [];
-      vertices[0] = { x: canvas.width - streakWidth * 2, y: 0 };
-      vertices[1] = { x: canvas.width - streakWidth, y: 0 };
-      vertices[2] = {
-        x: canvas.width - streakWidth,
-        y: previousStreakHeight,
-      };
+      if (previousStreakHeight > currentStreakHeight) {
+        let trapezoidWidth =
+          ((previousStreakHeight - currentStreakHeight) * streakWidth) /
+          previousStreakHeight;
+        vertices = [];
+        vertices[0] = { x: canvas.width - streakWidth * 2, y: 0 };
+        vertices[1] = {
+          x: canvas.width - streakWidth - trapezoidWidth,
+          y: currentStreakHeight,
+        };
+        vertices[2] = {
+          x: canvas.width - streakWidth,
+          y: currentStreakHeight,
+        };
+        vertices[3] = { x: canvas.width - streakWidth, y: 0 };
+      } else {
+        vertices = [];
+        vertices[0] = { x: canvas.width - streakWidth * 2, y: 0 };
+        vertices[1] = { x: canvas.width - streakWidth, y: 0 };
+        vertices[2] = {
+          x: canvas.width - streakWidth,
+          y: previousStreakHeight,
+        };
+      }
 
       drawFilledPolygon(ctx, vertices);
 
@@ -158,21 +184,40 @@ function drawZigs() {
     previousStreakHeight = currentStreakHeight;
   }
 
+  //draw the flare elements
+  let blueFlare = contentRows[0].querySelector(".blue-flare");
+  let redFlare = contentRows[0].querySelector(".red-flare");
+
+  let blueFlareBottom =
+    contentRows[contentRows.length - 1].querySelector(".blue-flare-bottom");
+  let redFlareBottom =
+    contentRows[contentRows.length - 1].querySelector(".red-flare-bottom");
+
+  let canvasStart = canvas.getBoundingClientRect().left;
+  let canvasEnd = canvas.getBoundingClientRect().right;
+
   redFlare.style.left = `${canvasStart + offset + streakWidth / dpr}px`;
-  // blueFlare.style.left = `${canvasStart + offset}px`;
+  redFlareBottom.style.left = `${canvasEnd - streakWidth / dpr}px`;
+
   redFlare.style.width = `${
     document.body.clientWidth - (canvasStart + offset + streakWidth / dpr)
   }px`;
+  redFlareBottom.style.width = `${
+    document.body.clientWidth - (canvasEnd - streakWidth / dpr)
+  }px`;
 
-  blueFlare.style.left = `${
-    canvasStart + offset + streakWidth / dpr - streakWidth / dpr / 4
-  }px`;
-  blueFlare.style.width = `${
-    canvasStart + offset + streakWidth / dpr - streakWidth / dpr / 4
-  }px`;
+  blueFlare.style.left = `${canvasStart + offset + streakWidth / dpr}px`;
+  blueFlareBottom.style.left = `${canvasEnd - streakWidth / dpr}px`;
+
+  blueFlare.style.width = `${canvasStart + offset + streakWidth / dpr}px`;
+  blueFlareBottom.style.width = `${canvasEnd - streakWidth / dpr}px`;
+
   blueFlare.style.transition = "width 1s ease, left 1s ease";
+  blueFlareBottom.style.transition = "width 1s ease, left 1s ease";
+
   requestAnimationFrame(() => {
     blueFlare.style.left = "0";
+    blueFlareBottom.style.left = "0";
   });
 }
 
