@@ -34,7 +34,7 @@ body {
   display: flex;
   font-family: "Oswald", sans-serif;
   color: #fcfffb;
-  white-space: nowrap;
+  /* white-space: nowrap; */
   align-items: center;
   flex-direction: column;
   padding-top: 20px;
@@ -66,6 +66,16 @@ body {
 
 .item:hover {
   text-decoration: underline;
+}
+
+.blurb {
+  /* margin: 20px; */
+  margin-bottom: 15px;
+  font-size: 25px;
+  font-weight: 100;
+  text-align: center;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .flare-container {
@@ -185,7 +195,7 @@ body {
   text-align: center;
   font-size: 27px;
   font-family: "Oswald", sans-serif;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  /* text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); */
 }
 
 .merch {
@@ -286,8 +296,13 @@ body {
     order: 2;
   }
 
+  .blurb {
+    font-size: 18px;
+  }
+
   .bio {
     background-color: rgba(0, 0, 0, 0.75);
+    /* background-color: rgba(255, 255, 255, 0.75); */
     color: #fcfffb;
     border-radius: 3px;
   }
@@ -304,10 +319,12 @@ body {
 
   .name {
     color: #fcfffb;
+    /* color: #252422; */
   }
 
   .about {
     color: #fcfffb;
+    /* color: #252422; */
   }
 }
 
