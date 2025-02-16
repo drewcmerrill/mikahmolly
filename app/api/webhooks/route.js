@@ -1,7 +1,6 @@
 import { buffer } from "micro";
 import Stripe from "stripe";
 import nodemailer from "nodemailer";
-import fs from "fs";
 import path from "path";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
