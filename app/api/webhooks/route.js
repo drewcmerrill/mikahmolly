@@ -1,6 +1,6 @@
 import Stripe from "stripe";
 import { NextResponse } from "next/server";
-import nodemailer from "nodemailer"; // Use import instead of require
+import nodemailer from "nodemailer";
 
 export const config = {
   api: {
@@ -9,6 +9,9 @@ export const config = {
 };
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
+// Store the event IDs to prevent re-sending emails
+const processedEvents = new Set();
 
 export async function POST(req) {
   try {
@@ -24,9 +27,17 @@ export async function POST(req) {
     if (event.type === "checkout.session.completed") {
       console.log("✅ Payment successful:", event.data.object);
 
-      const customerEmail = event.data.object.customer_details?.email;
-      if (customerEmail) {
-        await sendEmailWithAttachment(customerEmail);
+      // Use the event ID to ensure the email is only sent once
+      const eventId = event.id;
+      if (!processedEvents.has(eventId)) {
+        processedEvents.add(eventId); // Mark the event as processed
+
+        const customerEmail = event.data.object.customer_details?.email;
+        if (customerEmail) {
+          await sendEmailWithAttachment(customerEmail);
+        }
+      } else {
+        console.log("📧 Email already sent for this event.");
       }
     }
 
@@ -50,7 +61,7 @@ async function sendEmailWithAttachment(toEmail) {
     from: '"Mikah & Molly" <mikahandmolly@gmail.com>',
     to: toEmail,
     subject: "Your Order Confirmation",
-    text: "Thank you for your purchase! Attached is the workout plan!.",
+    text: "Thank you for your purchase! Attached is your invoice.",
     attachments: [
       {
         filename: "workout.pdf",
