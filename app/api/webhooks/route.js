@@ -47,10 +47,10 @@ async function sendEmailWithAttachment(toEmail) {
   });
 
   let mailOptions = {
-    from: '"Your Store" <orders@example.com>',
+    from: '"Mikah & Molly" <mikahandmolly@gmail.com>',
     to: toEmail,
     subject: "Your Order Confirmation",
-    text: "Thank you for your purchase! Attached is your invoice.",
+    text: "Thank you for your purchase! Attached is the workout plan!.",
     attachments: [
       {
         filename: "workout.pdf",
