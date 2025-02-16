@@ -1,16 +1,27 @@
-import { NextResponse } from "next/server";
+import { buffer } from "micro";
 import Stripe from "stripe";
 import nodemailer from "nodemailer";
+import fs from "fs";
+import path from "path";
 
-// Initialize Stripe with your secret key
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-export async function POST(req) {
-  const payload = await req.text();
-  const sig = req.headers.get("stripe-signature");
+export const config = {
+  api: {
+    bodyParser: false, // Required for Stripe webhooks
+  },
+};
+
+export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).send("Method Not Allowed");
+  }
+
+  const payload = await buffer(req);
+  const sig = req.headers["stripe-signature"];
 
   try {
-    // Verify the webhook signature
+    // Verify webhook signature
     const event = stripe.webhooks.constructEvent(
       payload,
       sig,
@@ -18,44 +29,48 @@ export async function POST(req) {
     );
 
     if (event.type === "checkout.session.completed") {
-      const session = event.data.object;
-      const customerEmail = session.customer_details.email;
+      console.log("✅ Payment successful:", event.data.object);
 
-      console.log(
-        "Payment successful! Sending confirmation email to:",
-        customerEmail
-      );
+      // Get customer email from session
+      const customerEmail = event.data.object.customer_details.email;
 
-      // Configure email transport
-      const transporter = nodemailer.createTransport({
-        service: "Gmail",
-        auth: {
-          user: process.env.EMAIL_USER,
-          pass: process.env.EMAIL_PASS,
-        },
-      });
+      // Path to the attachment (e.g., invoice.pdf)
+      const attachmentPath = path.join(process.cwd(), "public", "invoice.pdf");
 
-      // Send the confirmation email
-      const mailOptions = {
-        from: process.env.EMAIL_USER,
-        to: customerEmail,
-        subject: "Order Confirmation",
-        text: `Thank you for your order! Your payment was successful.`,
-        html: `<p>Thank you for your order! Your payment has been successfully processed.</p>`,
-      };
-
-      await transporter.sendMail(mailOptions);
-      console.log("Email sent to:", customerEmail);
-
-      return NextResponse.json({ success: true });
+      // Send email with attachment
+      await sendEmailWithAttachment(customerEmail, attachmentPath);
     }
 
-    return NextResponse.json({ received: true });
+    return res.json({ received: true });
   } catch (error) {
-    console.error("Webhook error:", error);
-    return NextResponse.json(
-      { error: "Webhook handler failed" },
-      { status: 400 }
-    );
+    console.error("❌ Webhook Error:", error);
+    return res.status(400).send(`Webhook error: ${error.message}`);
   }
+}
+
+async function sendEmailWithAttachment(toEmail, attachmentPath) {
+  let transporter = nodemailer.createTransport({
+    service: "gmail", // Or use SMTP details for another provider
+    auth: {
+      user: process.env.EMAIL_USER, // Your email
+      pass: process.env.EMAIL_PASS, // Your email password or app password
+    },
+  });
+
+  let mailOptions = {
+    from: '"Your Store" <orders@example.com>',
+    to: toEmail,
+    subject: "Your Order Confirmation",
+    text: "Thank you for your purchase! Attached is your invoice.",
+    attachments: [
+      {
+        filename: "workout.pdf",
+        path: "/root/media/workout.pdf",
+        contentType: "application/pdf",
+      },
+    ],
+  };
+
+  await transporter.sendMail(mailOptions);
+  console.log(`📧 Email sent to ${toEmail}`);
 }
