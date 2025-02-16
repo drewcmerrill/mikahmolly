@@ -1,7 +1,6 @@
 import { buffer } from "micro";
 import Stripe from "stripe";
 import nodemailer from "nodemailer";
-import path from "path";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
@@ -33,11 +32,8 @@ export default async function handler(req, res) {
       // Get customer email from session
       const customerEmail = event.data.object.customer_details.email;
 
-      // Path to the attachment (e.g., invoice.pdf)
-      const attachmentPath = path.join(process.cwd(), "public", "invoice.pdf");
-
       // Send email with attachment
-      await sendEmailWithAttachment(customerEmail, attachmentPath);
+      await sendEmailWithAttachment(customerEmail);
     }
 
     return res.json({ received: true });
@@ -47,7 +43,7 @@ export default async function handler(req, res) {
   }
 }
 
-async function sendEmailWithAttachment(toEmail, attachmentPath) {
+async function sendEmailWithAttachment(toEmail) {
   let transporter = nodemailer.createTransport({
     service: "gmail", // Or use SMTP details for another provider
     auth: {
