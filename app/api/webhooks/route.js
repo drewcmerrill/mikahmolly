@@ -2,24 +2,19 @@ import { buffer } from "micro";
 import Stripe from "stripe";
 import nodemailer from "nodemailer";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-
 export const config = {
   api: {
     bodyParser: false, // Required for Stripe webhooks
   },
 };
 
-export default async function handler(req, res) {
-  if (req.method !== "POST") {
-    return res.status(405).send("Method Not Allowed");
-  }
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-  const payload = await buffer(req);
-  const sig = req.headers["stripe-signature"];
-
+export async function POST(req) {
   try {
-    // Verify webhook signature
+    const payload = await buffer(req);
+    const sig = req.headers.get("stripe-signature");
+
     const event = stripe.webhooks.constructEvent(
       payload,
       sig,
@@ -36,19 +31,19 @@ export default async function handler(req, res) {
       await sendEmailWithAttachment(customerEmail);
     }
 
-    return res.json({ received: true });
+    return new Response(JSON.stringify({ received: true }), { status: 200 });
   } catch (error) {
     console.error("❌ Webhook Error:", error);
-    return res.status(400).send(`Webhook error: ${error.message}`);
+    return new Response(`Webhook error: ${error.message}`, { status: 400 });
   }
 }
 
 async function sendEmailWithAttachment(toEmail) {
   let transporter = nodemailer.createTransport({
-    service: "gmail", // Or use SMTP details for another provider
+    service: "gmail",
     auth: {
-      user: process.env.EMAIL_USER, // Your email
-      pass: process.env.EMAIL_PASS, // Your email password or app password
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
     },
   });
 
