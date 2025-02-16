@@ -1,5 +1,6 @@
 import Stripe from "stripe";
 import { NextResponse } from "next/server";
+import nodemailer from "nodemailer"; // Use import instead of require
 
 export const config = {
   api: {
@@ -37,8 +38,6 @@ export async function POST(req) {
 }
 
 async function sendEmailWithAttachment(toEmail) {
-  const nodemailer = require("nodemailer");
-
   let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
