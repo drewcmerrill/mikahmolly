@@ -3,8 +3,6 @@
 // import Footer from "@/components/Footer";
 // import Grid from "@/components/Grid";
 import Hero from "@/components/Hero";
-import Checkout from "@/components/Checkout";
-import Header from "@/components/Header";
 import Products from "@/components/Products";
 
 export default function Home() {
