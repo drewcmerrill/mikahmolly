@@ -5,14 +5,16 @@
 import Hero from "@/components/Hero";
 import Checkout from "@/components/Checkout";
 import Header from "@/components/Header";
+import Products from "@/components/Products";
 
 export default function Home() {
   return (
     <main className="background relative flex justify-center items-center flex-col mx-auto sm:px-10 px-5 overflow-clip">
       <div className="max-w-7xl w-full">
-        <Header />
+        {/* <Header /> */}
         <Hero />
-        <Checkout />
+        <Products />
+        {/* <Checkout /> */}
         {/* <Grid />
         <About />
         <PhotoScroll />
