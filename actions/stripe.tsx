@@ -14,7 +14,7 @@ export async function fetchClientSecret() {
       {
         // Provide the exact Price ID (for example, pr_1234) of
         // the product you want to sell
-        price: "price_1Qr4TUCROlPmOkC65Q1dITe9",
+        price: "price_1QuQQvCROlPmOkC6FcBypKiK",
         quantity: 1,
       },
     ],
