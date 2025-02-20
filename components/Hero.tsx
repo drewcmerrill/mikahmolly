@@ -25,7 +25,7 @@ const Hero = () => {
       >
         MIKAH & MOLLY
         <br />
-        <Highlight className="text-black dark:text-white">
+        <Highlight className="text-black dark:text-white" duration={2}>
           GET IT DONE.
         </Highlight>
       </motion.h1>
