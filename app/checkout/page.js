@@ -2,7 +2,6 @@ import React from "react";
 import Checkout from "@/components/Checkout";
 import { FloatingNav } from "@/components/ui/floating-navbar";
 import { navItems } from "@/data";
-import { BackgroundGradient } from "@/components/ui/background-gradient";
 
 const page = () => {
   return (
