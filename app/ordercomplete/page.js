@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 
 import { stripe } from "../../lib/stripe";
 import { Highlight } from "@/components/ui/hero-highlight";
+import DownloadButton from "@/components/ui/download-button";
 
 export default async function Return({ searchParams }) {
   const { session_id } = await searchParams;
@@ -23,14 +24,20 @@ export default async function Return({ searchParams }) {
   if (status === "complete") {
     return (
       <div className="flex items-center flex-col p-10">
-        <Highlight className="text-black p-2" duration={1}>
+        <Highlight className="text-black p-2 text-5xl" duration={1}>
           THANK YOU FOR YOUR ORDER
         </Highlight>
-        <p>
-          Testing! A confirmation email will be sent to {customerEmail}. If you
-          have any questions, please email{" "}
+        <p className="text-3xl text-center mt-5">
+          Your 12 Week Hybrid Workout Program will be emailed to {customerEmail}
+          . Or download it below!
         </p>
-        {/* <a href="mailto:orders@example.com">orders@example.com</a>. */}
+        <DownloadButton />
+        <div>
+          <p className="mt-5">
+            If you have any questions or concerns please reach out to us at
+            mikahandmolly@gmail.com
+          </p>
+        </div>
       </div>
     );
   }
