@@ -15,7 +15,7 @@ export const HeroHighlight = ({
   return (
     <div
       className={cn(
-        "relative h-[20rem] flex items-center bg-transparent dark:bg-black justify-center w-full group",
+        "relative h-[15rem] flex items-center bg-transparent dark:bg-black justify-center w-full group",
         containerClassName
       )}
     >

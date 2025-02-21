@@ -5,22 +5,21 @@
 import Hero from "@/components/Hero";
 import Products from "@/components/Products";
 import { FloatingNav } from "@/components/ui/floating-navbar";
+import InstagramButton from "@/components/ui/instagram-button";
 import { navItems } from "@/data";
+import { FaInstagram } from "react-icons/fa";
 
 export default function Home() {
   return (
-    <main className="relative flex justify-center items-center flex-col mx-auto sm:px-10 px-5 overflow-clip">
-      <div className="max-w-7xl w-full">
-        <FloatingNav navItems={navItems} />
-        {/* <Header /> */}
-        <Hero />
-        <Products />
-        {/* <Checkout /> */}
-        {/* <Grid />
-        <About />
-        <PhotoScroll />
-        <Footer /> */}
-      </div>
+    <main className="relative flex justify-center items-center flex-col mx-auto sm:px-10 px-5 overflow-clip my-5">
+      <FloatingNav navItems={navItems} />
+      <Hero />
+      <Products />
+      <InstagramButton
+        title="Our Instagram"
+        icon={<FaInstagram />}
+        position="right"
+      />
     </main>
   );
 }
