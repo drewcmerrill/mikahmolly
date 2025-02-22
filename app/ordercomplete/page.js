@@ -33,7 +33,7 @@ export default async function Return({ searchParams }) {
           className="text-black p-2 text-2xl lg:text-5xl justify-center text-center mt-10"
           duration={1}
         >
-          THANK YOU FOR YOUR ORDER
+          Thank you for your order
         </Highlight>
         <p className="lg:text-3xl text-center mt-5">
           Your 12 Week Hybrid Workout Program will be emailed to {customerEmail}
