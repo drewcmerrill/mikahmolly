@@ -61,7 +61,7 @@ async function sendEmailWithAttachment(toEmail) {
     from: '"Mikah & Molly" <mikahandmolly@gmail.com>',
     to: toEmail,
     subject: "Your Order Confirmation",
-    text: "Thank you for your purchase! Attached is your invoice.",
+    text: "Thank you for buying our 12 Week Hybrid Workout plan! We're so excited to share this journey with you! Please feel free to reach out with any questions or feedback, you can reply to this email or shoot us a DM on instagram @mikahmolly!",
     attachments: [
       {
         filename: "workout.pdf",
