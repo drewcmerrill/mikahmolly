@@ -37,7 +37,7 @@ export default async function Return({ searchParams }) {
         </Highlight>
         <p className="lg:text-3xl text-center mt-5">
           Your 12 Week Hybrid Workout Program will be emailed to {customerEmail}
-          . Or download it below!
+          , or download it below!
         </p>
         <DownloadButton />
         <p className="my-5 text-center">
