@@ -64,8 +64,8 @@ async function sendEmailWithAttachment(toEmail) {
     text: "Thank you for buying our 12 Week Hybrid Workout plan! We're so excited to share this journey with you!\n Please feel free to reach out with any questions or feedback, you can reply to this email or shoot us a DM on instagram @mikahmolly!\n\n- Mikah & Molly",
     attachments: [
       {
-        filename: "workout.pdf",
-        path: "/root/media/workout.pdf",
+        filename: "Mikah and Molly 12 Week Training Program.pdf",
+        path: "/root/media/Mikah and Molly 12 Week Training Program.pdf",
         contentType: "application/pdf",
       },
     ],
