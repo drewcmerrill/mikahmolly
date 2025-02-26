@@ -3,6 +3,7 @@
 // import Footer from "@/components/Footer";
 // import Grid from "@/components/Grid";
 import Hero from "@/components/Hero";
+import { InfiniteCards } from "@/components/InfiniteCards";
 import Products from "@/components/Products";
 import { FloatingNav } from "@/components/ui/floating-navbar";
 import InstagramButton from "@/components/ui/instagram-button";
@@ -14,6 +15,7 @@ export default function Home() {
     <main className="relative flex justify-center items-center flex-col mx-auto sm:px-10 px-5 overflow-clip my-5">
       <FloatingNav navItems={navItems} />
       <Hero />
+      {/* <InfiniteCards /> */}
       <Products />
       <InstagramButton
         title="Our Instagram"
