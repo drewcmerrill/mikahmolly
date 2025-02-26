@@ -13,7 +13,7 @@ const ExerciseList = ({
 }) => {
   return (
     <div className="flex flex-col gap-24 my-24 ">
-      {videos.map((video, idx) => (
+      {videos.map((video) => (
         <div key={video.title} className="flex flex-col items-center">
           <p className=" text-3xl lg:text-5xl mb-5">{video.title}</p>
           <div className="w-[90vw] max-w-[700px] mx-5">

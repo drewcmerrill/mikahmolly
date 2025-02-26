@@ -3,7 +3,6 @@
 // import Footer from "@/components/Footer";
 // import Grid from "@/components/Grid";
 import Hero from "@/components/Hero";
-import { InfiniteCards } from "@/components/InfiniteCards";
 import Products from "@/components/Products";
 import { FloatingNav } from "@/components/ui/floating-navbar";
 import InstagramButton from "@/components/ui/instagram-button";
