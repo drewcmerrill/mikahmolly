@@ -39,7 +39,14 @@ export default async function Return({ searchParams }) {
           Your 12 Week Hybrid Workout Program will be emailed to {customerEmail}
           , or download it below!
         </p>
+
         <DownloadButton />
+        <p className="lg:text-3xl text-center mt-5">
+          Videos of all of the exercises can be found{" "}
+          <a href="/exercises" className="underline decoration-2">
+            here!
+          </a>
+        </p>
         <p className="my-5 text-center">
           If you have any questions or concerns please reach out to us at
           mikahandmolly@gmail.com or DM us on Instagram!
